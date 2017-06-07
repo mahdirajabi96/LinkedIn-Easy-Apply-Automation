@@ -17,6 +17,8 @@ https://stackoverflow.com/questions/39281806/python-opening-multiple-tabs-using-
 '''
 username =  "# your email here"
 password =  "# your password here"
+jobTitle =  "# desired job title"
+jobLocation = "# desired job location"
 
 def init_driver():
     driver = webdriver.Chrome(executable_path = "./chromedriver")
@@ -25,6 +27,7 @@ def init_driver():
 #enddef
 
 def login(driver, username, password):
+    print "Logging into Linkedin account ..."
     driver.get("https://www.linkedin.com/")
     try:
         user_field = driver.find_element_by_class_name("login-email")
@@ -48,19 +51,19 @@ def isElementPresentByClassName(driver, classname):
         return False
     return True
 
-def gotojobs(driver):
+def searchJobs(driver):
     driver.get("https://www.linkedin.com/jobs")
     a=[]
     a = driver.find_elements_by_class_name("ember-text-field")
     for i in a:
         print i.get_attribute("id")
-    jobDescField = a[0]
+    jobTitleField = a[0]
     locField = a[1]
     search_button = driver.find_element_by_class_name("submit-button")
-    jobDescField.send_keys("Software Developer") # Desired Job Title
-    jobDescField.send_keys(Keys.TAB)
+    jobTitleField.send_keys(jobTitle) # Desired Job Title
+    jobTitleField.send_keys(Keys.TAB)
     time.sleep(1)
-    locField.send_keys("San Francisco Bay Area") # Desired Location
+    locField.send_keys(jobLocation) # Desired Location
     time.sleep(1)
     search_button.click()
     time.sleep(2)   
@@ -108,7 +111,6 @@ def loopThroughJobs(driver,jobsList):
 
 
 def applyToJob(driver,job):
-    
     window_before = driver.window_handles[0]
     execScript = "window.open('"+job+"', 'CurrJob');"
     driver.execute_script(execScript)
@@ -154,10 +156,9 @@ def applyToJob(driver,job):
 if __name__ == "__main__":
     driver = init_driver()
     time.sleep(3)
-    print "Logging into Linkedin account ..."
     login(driver, username, password)
     time.sleep(1)
-    gotojobs(driver)
+    searchJobs(driver)
 
 
 
