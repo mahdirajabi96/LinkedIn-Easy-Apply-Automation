@@ -37,3 +37,6 @@ $ python LinkedInEasyApply.py
 ```
 
 
+## Video
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YAguiUPNKoc/0.jpg)](https://www.youtube.com/watch?v=YAguiUPNKoc&feature=youtu.be)
