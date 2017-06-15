@@ -30,6 +30,7 @@ username =  "# your email here"
 password =  "# your password here"
 jobTitle =  "# desired job title"
 jobLocation = "# desired job location"
+resumeLocation = "# resume location on local machine"
 
 3) Run the program
 ```sh
