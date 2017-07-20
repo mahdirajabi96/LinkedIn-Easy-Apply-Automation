@@ -175,15 +175,15 @@ def convertJobElement(i):
     try:
         html = i.get_attribute("innerHTML")
         soup = BeautifulSoup(html, "html.parser")
-        title = soup.find("span", {"class" : "truncate-multiline--last-line-wrapper"}).find("span").getText().strip()
-        # print("Job Title:" + title)
+        title = soup.find("h3", {"class" : "job-card__title"}).getText().strip()
+        print("Job Title:" + title)
         company = soup.find("h4", {"class" : "job-card__company-name"}).getText().strip()
-        # print("Company:" + company)
+        print("Company:" + company)
         link = i.find_element_by_class_name("job-card__link-wrapper").get_attribute('href')
-        # link = soup.find("a", {"class" : "job-card__link-wrapper"})['href']
-        # print("Link:" + link)
-        city = soup.find("h5", {"class" : "job-card__location "}).getText().strip().replace("Job Location","")
-        # print("City:" + city.strip())
+        link = soup.find("a", {"class" : "job-card__link-wrapper"})['href']
+        print("Link:" + link)
+        city = soup.find("h5", {"class" : "job-card__location"}).getText().strip().replace("Job Location","")
+        print("City:" + city.strip())
         curr = JobData.JobData(title,company,link,city.strip(),html)
         print(curr)
         return curr
